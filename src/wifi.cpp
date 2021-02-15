@@ -2,10 +2,10 @@
 #include "sensors.h"
 #include "timer.h"
 
-//char ssid[] = "Familiepijl";    // my network SSID (name)
-//char pass[] = "Arrow6666!";     // my network password
-char ssid[] = "ASUS-fampijl";    // my network SSID (name)
-char pass[] = "arrowfamily2014";     // my network password
+char ssid[] = "Familiepijl";    // my network SSID (name)
+char pass[] = "Arrow6666!";     // my network password
+//char ssid[] = "ASUS-fampijl";    // my network SSID (name)
+//char pass[] = "arrowfamily2014";     // my network password
 int keyIndex = 0;                // my network key Index number
 int status = WL_IDLE_STATUS;
 
@@ -287,9 +287,9 @@ int8_t handleRequest(WiFiClient *client) {
         client->find("\r\n\r\n");
         int sz = client->readBytes(jsonString, 1200);
         jsonString[sz] = '\0';
-        // if (trace_on == 1) {
-        //     Serial1.println(jsonString);
-        // }
+        if (trace_on == 1) {
+            Serial1.println(jsonString);
+        }
 /*==================================================================
 *      rules/(on | off | temp/on | temp/off | hum/on | hum/off)
 *==================================================================*/

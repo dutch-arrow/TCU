@@ -267,7 +267,7 @@ void loop() {
         }
         // Clock is synchronized every day
         int8_t cur_day = rtc.now().day();
-        if (cur_day > last_day) {
+        if (cur_day != last_day) {
             if (setRTC(&client) == 0) {
                 last_day = rtc.now().day();
             }

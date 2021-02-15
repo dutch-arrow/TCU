@@ -23,7 +23,12 @@ void check_timers() {
         if (t.index > prev_ix) { // next on-timer index
             prev_ix = ix;
             int on_timer_time = t.hour * 60 + t.minute;
-            int off_timer_time = timers[i + 1].hour * 60 + timers[i + 1].minute;
+            int off_timer_time;
+            if (timers[i + 1].hour == 24) {
+                off_timer_time = on_timer_time + 1;
+            } else {
+                off_timer_time = timers[i + 1].hour * 60 + timers[i + 1].minute;
+            }
             int end_time = (t.on_period == 0 ? 0 : rtc.now().unixtime() + t.on_period);
             if (now_time >= on_timer_time && now_time <= off_timer_time) {
                 set_device_state(t.device, t.on_off, end_time);
